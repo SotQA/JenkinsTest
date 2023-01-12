@@ -1,6 +1,6 @@
 package webTests;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,8 +8,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class firstNameFormTest extends Main {
 
-    @BeforeEach
-    public void createObject(){
+    @BeforeAll
+    public static void createObject() {
         driver = new ChromeDriver();
     }
 
@@ -25,5 +25,7 @@ public class firstNameFormTest extends Main {
         radioButton.click();
         WebElement checkbox = driver.findElement(By.xpath("//label[input/@name='hobby']/input[1]"));
         checkbox.click();
+        WebElement dropdown = driver.findElement(By.xpath("//option[@value='India']"));
+        dropdown.click();
     }
 }
