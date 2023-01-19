@@ -1,7 +1,7 @@
 package webTests;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,7 +16,6 @@ public class authorizationPage extends Configuration {
         driver = new ChromeDriver();
         driver.get("https://www.way2automation.com/way2auto_jquery/registration.php#load_box");
         driver.manage().window().maximize();
-        Select select;
     }
 
     @Test
@@ -44,7 +43,6 @@ public class authorizationPage extends Configuration {
     public void checkBoxTest() {
         WebElement checkBox = driver.findElement(By.xpath("//*[contains(text(), 'Reading')]"));
         checkBox.click();
-
     }
 
     @Test
@@ -56,12 +54,15 @@ public class authorizationPage extends Configuration {
 
     @Test
     public void dateOfBirthDropdownsTest() {
-        //WebElement  = driver.findElement(By.xpath("//*[contains(text(), 'Month')]"));
-        WebElement dropDownDay = driver.findElement(By.xpath("//*[contains(text(), 'Day')]"));
-        WebElement dropDownYear = driver.findElement(By.xpath("//*[contains(text(), 'Year')]"));
-
-        Select dropDownMonth = new Select(driver.findElement(By.xpath("//*[contains(text(), 'Month')]")));
+        Select dropDownMonth = new Select(driver.findElement(By.xpath("(//div/select[@name][@id])[1]")));
         dropDownMonth.selectByValue("1");
+
+        Select dropDownDay = new Select(driver.findElement(By.xpath("(//div/select[@name][@id])[2]")));
+        dropDownDay.selectByValue("1");
+
+        Select dropDownYear = new Select(driver.findElement(By.xpath("(//div/select[@name][@id])[3]")));
+        dropDownYear.selectByValue("2014");
+
     }
 
     @Test
@@ -86,6 +87,12 @@ public class authorizationPage extends Configuration {
     }
 
     @Test
+    public void uploadFileTest(){
+        WebElement uploadFileInput = driver.findElement(By.xpath("//fieldset/input[@type='file']"));
+        uploadFileInput.sendKeys("C:\\\\Sergeys\\Progs\\Photo.png");
+    }
+
+    @Test
     public void aboutYourselfAreaTest(){
         WebElement yourselfArea = driver.findElement(By.xpath("//fieldset/textarea"));
         yourselfArea.click();
@@ -107,7 +114,7 @@ public class authorizationPage extends Configuration {
         confirmPasswordField.sendKeys("12345OneTwoThree!");
     }
 
-    @Disabled
+    @AfterAll
     public static void submitButtonTest(){
         WebElement submitButton = driver.findElement(By.xpath("//fieldset/input[ @type='submit']"));
         submitButton.click();
