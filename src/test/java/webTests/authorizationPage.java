@@ -1,28 +1,28 @@
 package webTests;
 
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class authorizationPage extends Configuration {
-
+public class authorizationPage extends WebElements {
 
     @BeforeAll
     public static void createObject() {
         driver = new ChromeDriver();
         driver.get("https://www.way2automation.com/way2auto_jquery/registration.php#load_box");
         driver.manage().window().maximize();
+        //WebElements webElement = new WebElements();
     }
 
     @Test
     public void firstNameFieldTest() {
         WebElement firstNameField = driver.findElement(By.xpath("//p/input[@name='name']"));
-        firstNameField.click();
         firstNameField.sendKeys("Sergey");
+        //getWebElement(driver.findElement(By.xpath("//p/input[@name='name']"))).sendKeys("Sergey");
     }
 
     @Test
@@ -114,7 +114,7 @@ public class authorizationPage extends Configuration {
         confirmPasswordField.sendKeys("12345OneTwoThree!");
     }
 
-    @AfterAll
+    @Disabled
     public static void submitButtonTest(){
         WebElement submitButton = driver.findElement(By.xpath("//fieldset/input[ @type='submit']"));
         submitButton.click();
