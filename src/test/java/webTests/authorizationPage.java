@@ -49,7 +49,7 @@ public class authorizationPage extends WebElements {
     public void countryDropDownTest() {
         WebElement dropDown = driver.findElement(By.xpath("//select/option[@value='India']"));
         dropDown.click();
-        driver.findElement(By.xpath("//select/option[text()='India'][2]")).click();
+        driver.findElement(By.xpath("//select[not(@name='country')]/option[text()='India' and not(contains(@selected, 'selected'))]")).click();
     }
 
     @Test
