@@ -9,7 +9,9 @@ pipeline {
         }
         stage('Test') {
             steps {
+                echo 'Build is complete!'
                 echo 'Testing..'
+                javac authorizationPage.java
             }
         }
         stage('Deploy') {
